@@ -14,8 +14,10 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
 
   const dispatch = useDispatch();
   const [animationKey, setAnimationKey] = useState<number>(0);
+  const [isCromatic, setIsCromatic] = useState<boolean>(false);
 
   useEffect(() => {
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
         e.key === "Shift" ||
@@ -29,7 +31,7 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
       switch (e.key) {
         case "Enter":
           console.log("Parola digitata:", word);
-          dispatch(aggiornaPunteggio(100));
+          isCromatic ? dispatch(aggiornaPunteggio(500)) : dispatch(aggiornaPunteggio(100));
           dispatch(avanzaIndice());
           setWord("");
           break;
@@ -49,7 +51,16 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
 
   useEffect(() => {
     setAnimationKey(prevKey => prevKey + 1);
+      //logica per decreatare la cromaticità della specie
+      let random: number = Math.floor(Math.random() * 100) + 1;
+      setIsCromatic(random >= 50);
+      console.log(random);
   }, [pokemon]);
+
+  const spriteUrl = isCromatic
+  ? `url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png)`
+  : `url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png)`;
+
 
   return (
     <div style={{
@@ -64,13 +75,16 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
         style={{
           height: "200px",
           width: "200px",
-          backgroundImage: `url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png)`,
+          backgroundImage: spriteUrl,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: 'no-repeat',
         }}
       />
       <p style={{ fontSize: "2rem" }}>{word}</p>
+      {isCromatic && (
+        <div className="sparkle-effect" />
+      )}
     </div>
   );
 };

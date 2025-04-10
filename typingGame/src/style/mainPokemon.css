@@ -2,6 +2,23 @@
     animation: entrata 1s, meanwhile 3s ease infinite 1s;
 }
 
+.sparkle-effect {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  pointer-events: none;
+  background-image: url('https://img.clipart-library.com/2/clip-sparkle-animated-gif/clip-sparkle-animated-gif-15.gif');
+  background-size: contain;
+  animation: sparkle 2s;
+  z-index: -10;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.5; transform: scale(1); }
+}
+
 @keyframes entrata {
     0% {
       opacity: 0;
