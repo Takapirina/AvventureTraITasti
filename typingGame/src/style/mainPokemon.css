@@ -9,7 +9,7 @@
   pointer-events: none;
   background-image: url('https://img.clipart-library.com/2/clip-sparkle-animated-gif/clip-sparkle-animated-gif-15.gif');
   background-size: contain;
-  animation: sparkle 2s;
+  animation: sparkle 2s infinite;
   z-index: -10;
 }
 
