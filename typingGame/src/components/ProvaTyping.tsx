@@ -5,6 +5,9 @@ import { aggiornaPunteggio, avanzaIndice } from "../store/gameSlice";
 
 import '../style/mainPokemon.css'
 
+//importo utils per calcolare il punteggio
+import { getSimilarity } from "../utils/calcolaPunteggio";
+
 interface ProvaTypingProps {
   pokemon: Pokemon;
 }
@@ -16,9 +19,20 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
   const [animationKey, setAnimationKey] = useState<number>(0);
   const [isCromatic, setIsCromatic] = useState<boolean>(false);
 
+  // timer interno
+  const [intervalId, setIntervalId] = useState<number>(0);
+
+
   useEffect(() => {
 
     const handleKeyDown = (e: KeyboardEvent) => {
+
+      if (intervalId<=0) {
+        setInterval(() => {
+          setIntervalId(intervalId+1);
+        }, 1000); // ogni secondo
+      }
+
       if (
         e.key === "Shift" ||
         e.key === "Control" ||
@@ -31,7 +45,14 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
       switch (e.key) {
         case "Enter":
           console.log("Parola digitata:", word);
-          isCromatic ? dispatch(aggiornaPunteggio(500)) : dispatch(aggiornaPunteggio(100));
+          // gestione timer
+          console.log(intervalId);
+          setIntervalId(0);
+
+          // gestione punteggio
+          let punteggio = Math.round(( pokemon.name.length * 100 ) * getSimilarity(word, pokemon.name));
+          isCromatic ? dispatch(aggiornaPunteggio(punteggio * 5)) : dispatch(aggiornaPunteggio(punteggio));
+
           dispatch(avanzaIndice());
           setWord("");
           break;
@@ -52,8 +73,8 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
   useEffect(() => {
     setAnimationKey(prevKey => prevKey + 1);
       //logica per decreatare la cromaticità della specie
-      let random: number = Math.floor(Math.random() * 100) + 1;
-      setIsCromatic(random >= 50);
+      let random: number = Math.floor(Math.random() * 64) + 1;
+      setIsCromatic(random >= 32 );
       console.log(random);
   }, [pokemon]);
 
