@@ -6,12 +6,14 @@ interface GameState {
   listaPokemon: Pokemon[];
   indiceCorrente: number;
   punteggio: number;
+  combo: number;
 }
 
 const initialState: GameState = {
   listaPokemon: [],
   indiceCorrente: 0,
   punteggio: 0,
+  combo: 1,
 };
 
 const gameSlice = createSlice({
@@ -31,9 +33,16 @@ const gameSlice = createSlice({
       state.listaPokemon = [];
       state.indiceCorrente = 0;
       state.punteggio = 0;
+      state.combo = 1;
     },
+    resetCombo(state) {
+      state.combo = 1;
+    },
+    aggiornaCombo(state) {
+      state.combo += 1;
+    }
   },
 });
 
-export const { setListaPokemon, avanzaIndice, aggiornaPunteggio, resetGame } = gameSlice.actions;
+export const { setListaPokemon, avanzaIndice, aggiornaPunteggio, resetGame, resetCombo, aggiornaCombo } = gameSlice.actions;
 export default gameSlice.reducer;

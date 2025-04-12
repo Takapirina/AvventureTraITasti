@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+.pokemonName-container{
+    position: relative;
+    display: inline-block;
+    height: 72px;
+}
+
+.textGame{
+    position: absolute;
+
+    font-family: 'Chewy', cursive;
+    font-size: 72px;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 2px;
+  
+    /* Banda a strisce: rosa, azzurro, giallo */
+    background: repeating-linear-gradient(
+      to bottom,
+      #ff9ee7 0%, 
+      #ff9ee7 25%,       /* rosa caramella */
+      #9eefff 50%,
+      #fff685 75%,
+      #ff9ee7 85%,
+      #ff9ee7 100%
+    );
+    background-size: 100% 200%;
+    animation: shimmer 5s linear infinite;
+  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    /* Contorno “elettrico” */
+    -webkit-text-stroke: 2px #fef9c3;
+  
+}
+
+.textGame2{
+    font-family: 'Chewy', cursive;
+    font-size: 72px;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 2px;
+
+    /* Ombra tipo glow + rilievo */
+    text-shadow:
+      0 0 6px #fcd34d,       /* glow giallo */
+      2px 2px 0 #f472b6,     /* rosa denso */
+      4px 4px 6px rgba(0, 0, 0, 0.25); /* ombra morbida */
+}
+
+@keyframes shimmer {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 150%; }
+  }

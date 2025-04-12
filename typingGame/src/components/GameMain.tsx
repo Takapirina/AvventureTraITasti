@@ -6,9 +6,11 @@ import { getRandomPokemonList } from "../utils/generatorPokemon";
 
 import ProvaTyping from "./ProvaTyping";
 import ListNextPokemons from "./ListNextPokemons";
+import Punteggio from "./Punteggio";
 
 import { pokemonList } from "../models/listaPokemon";
 import Pokemon from "../models/pokemon";
+import ComboText from "./comboText";
 
 const GameMain: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,8 +32,9 @@ const GameMain: React.FC = () => {
 
   return (
     <div>
+        <ComboText/>
         <ListNextPokemons listPokemons={listaPokemon} />
-      <p>Punteggio: {useSelector((state: any) => state.game.punteggio)}</p>
+        <Punteggio/>
       {listaPokemon.length > 0 && (
         <ProvaTyping pokemon={listaPokemon[indiceCorrente]} />
       )}

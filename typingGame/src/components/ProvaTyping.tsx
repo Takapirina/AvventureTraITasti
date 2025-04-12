@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Pokemon from "../models/pokemon";
 import { useDispatch } from "react-redux";
-import { aggiornaPunteggio, avanzaIndice } from "../store/gameSlice";
+import { useSelector } from "react-redux";
+import { avanzaIndice } from "../store/gameSlice";
+import { calcolaPunteggio } from "../utils/calcolaPunteggio";
 
-import '../style/mainPokemon.css'
+import Text from "./text";
+import PokemonImage from "./pokemonImg";
 
-//importo utils per calcolare il punteggio
-import { getSimilarity } from "../utils/calcolaPunteggio";
 
 interface ProvaTypingProps {
   pokemon: Pokemon;
@@ -14,25 +15,17 @@ interface ProvaTypingProps {
 
 const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
   const [word, setWord] = useState<string>("");
-
-  const dispatch = useDispatch();
-  const [animationKey, setAnimationKey] = useState<number>(0);
   const [isCromatic, setIsCromatic] = useState<boolean>(false);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
 
-  // timer interno
-  const [intervalId, setIntervalId] = useState<number>(0);
+  // Timer e gestione del punteggio
+  const [seconds, setSeconds] = useState<number>(0);
+  const dispatch = useDispatch();
 
+  const combo = useSelector((state: any) => state.game.combo);
 
   useEffect(() => {
-
     const handleKeyDown = (e: KeyboardEvent) => {
-
-      if (intervalId<=0) {
-        setInterval(() => {
-          setIntervalId(intervalId+1);
-        }, 1000); // ogni secondo
-      }
-
       if (
         e.key === "Shift" ||
         e.key === "Control" ||
@@ -42,23 +35,29 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
         return;
       }
 
+      if (!isRunning) {
+        setIsRunning(true);
+      }
+
       switch (e.key) {
         case "Enter":
           console.log("Parola digitata:", word);
-          // gestione timer
-          console.log(intervalId);
-          setIntervalId(0);
 
-          // gestione punteggio
-          let punteggio = Math.round(( pokemon.name.length * 100 ) * getSimilarity(word, pokemon.name));
-          isCromatic ? dispatch(aggiornaPunteggio(punteggio * 5)) : dispatch(aggiornaPunteggio(punteggio));
+          // Ferma il timer e resetta
+          setIsRunning(false);
+          console.log("Secondi impiegati:", seconds);
+          
+          calcolaPunteggio(dispatch, pokemon.name, word, seconds, isCromatic, combo);
 
           dispatch(avanzaIndice());
           setWord("");
+          setSeconds(0);
           break;
+
         case "Backspace":
           setWord((prev) => prev.slice(0, -1));
           break;
+
         default:
           setWord((prev) => prev + e.key);
       }
@@ -68,44 +67,48 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [word]);
+  }, [word, isRunning, pokemon, dispatch, isCromatic, seconds]);
 
+  // Gestione del timer
   useEffect(() => {
-    setAnimationKey(prevKey => prevKey + 1);
-      //logica per decreatare la cromaticità della specie
-      let random: number = Math.floor(Math.random() * 64) + 1;
-      setIsCromatic(random >= 32 );
-      console.log(random);
+    let interval: NodeJS.Timeout;
+    if (isRunning) {
+      interval = setInterval(() => {
+        setSeconds((prev) => prev + 0.1); // Aggiungi tempo in decimi di secondo
+      }, 100);
+    } else {
+      if (interval) {
+        clearInterval(interval);
+      }
+    }
+    return () => {
+      if (interval) {
+        clearInterval(interval); // Pulisci il timer quando il componente viene smontato
+      }
+    };
+  }, [isRunning]);
+
+  // Logica cromatica per il Pokémon
+  useEffect(() => {
+    const random = Math.floor(Math.random() * 32) + 1;
+    setIsCromatic(random == 1);
   }, [pokemon]);
 
-  const spriteUrl = isCromatic
-  ? `url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png)`
-  : `url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png)`;
-
-
   return (
-    <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-    }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <h2>{pokemon.name}</h2>
-      <div key={animationKey}
-        className="mainPokemon"
-        style={{
-          height: "200px",
-          width: "200px",
-          backgroundImage: spriteUrl,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
-      <p style={{ fontSize: "2rem" }}>{word}</p>
-      {isCromatic && (
-        <div className="sparkle-effect" />
-      )}
+      <PokemonImage pokemon={pokemon} isCromatico={isCromatic}/>
+      <Text nome={word} />
+      <div style={{ marginTop: "10px", fontSize: "20px" }}>
+        ⏱️ Tempo: {seconds.toFixed(1)} secondi
+      </div>
     </div>
   );
 };

@@ -1,0 +1,69 @@
+@keyframes popUpEffect {
+    0% {
+      transform: scale(var(--scale-start)) translate(0, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(var(--scale-end)) translate(var(--x), var(--y)); 
+      opacity: 1;
+    }
+}
+
+.stella {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2b96252f-36a9-4d78-a896-f31e2e20c0b6/d8jps39-a011bd43-d21c-41d9-9c19-c1d9454b0495.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJiOTYyNTJmLTM2YTktNGQ3OC1hODk2LWYzMWUyZTIwYzBiNlwvZDhqcHMzOS1hMDExYmQ0My1kMjFjLTQxZDktOWMxOS1jMWQ5NDU0YjA0OTUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.bW1G18cf50LD7IUJAWfRcFNiM7spFYNyU6bNiLS2imc');
+    background-size: cover;
+    background-position: center;
+    animation: popUpEffect 1s ease-out;
+    opacity: 0;
+    
+}
+
+.pokemon-field{
+    z-index: -10;
+    position: absolute;
+}
+
+.stella:nth-child(1) {
+    --x: 50px;
+    --y: -75px;
+    --scale-start: 0;
+    --scale-end: 1.5;
+}
+
+.stella:nth-child(2) {
+    --x: -60px;
+    --y: -40px;
+    --scale-start: 0;
+    --scale-end: 1.6;
+}
+
+.stella:nth-child(3) {
+    --x: 75px;
+    --y: 50px;
+    --scale-start: 0;
+    --scale-end: 1.7;
+}
+
+.stella:nth-child(4) {
+    --x: -50px;
+    --y: 50px;
+    --scale-start: 0;
+    --scale-end: 1.4;
+}
+
+.stella:nth-child(5) {
+    --x: 60px;
+    --y: -25px;
+    --scale-start: 0;
+    --scale-end: 1.6;
+}
+
+.stella:nth-child(6) {
+    --x: -75px;
+    --y: -5px;
+    --scale-start: 0;
+    --scale-end: 1.5;
+}
