@@ -1,8 +1,9 @@
 .main-page{
     padding: 5px;
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 2fr 1fr 6fr 4fr;
     gap: 5px;
+    height: 100vh;
 }
 .leaderboard{
     background-color: #ffffff10;

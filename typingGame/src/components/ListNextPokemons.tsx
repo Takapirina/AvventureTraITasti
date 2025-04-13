@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Pokemon from "../models/pokemon";
+import {Pokemon} from "../models/pokemon";
 import { useSelector } from "react-redux";
 
 interface ListNextPokemonsProps {
@@ -13,7 +13,7 @@ const ListNextPokemons: React.FC<ListNextPokemonsProps> = ({ listPokemons }) => 
 
     useEffect(() => {
         if (listPokemons.length > 0) {
-            const nextPokemons = listPokemons.slice(indiceCorrente+1, indiceCorrente + 6);
+            const nextPokemons = listPokemons.slice(indiceCorrente+1, indiceCorrente + 7);
             setNewList(nextPokemons);
         }
     }, [listPokemons, indiceCorrente]);
@@ -21,19 +21,24 @@ const ListNextPokemons: React.FC<ListNextPokemonsProps> = ({ listPokemons }) => 
     return (
         <div style={{
             display: 'flex',
+            flexDirection: 'column-reverse',
+            alignItems: 'center',
             flexWrap: 'wrap',
             justifyContent: 'space-around',
             gap: '10px',
-            marginTop: '20px',
+            backgroundColor: '#ffffff10',
+            borderRadius: '15px',
+            height: '100%'
         }}>
             {
                 newList.map((pokemon, index) => (
                     <div key={index} style={{
-                        width: '50px',
-                        height: '50px',
+                        width: '90px',
+                        height: '90px',
                         backgroundImage: `url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png)`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
+                        filter: "grayscale(100%) brightness(0)" 
                     }} />
                 ))
             }

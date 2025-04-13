@@ -20,8 +20,8 @@ const Pokedex: React.FC<PokedexProps> = ({ title, startId, endId }) => {
 
   return (
     <>
-    <p>{title}</p>
-    <div className="pokedex-container">
+    <div className="pokedex-name">{title}</div>
+    <div className="pokedex-data-container">
       {pokedex.map((p, index) => (
         <div key={index} className="pokedex-item">
           {p ? (

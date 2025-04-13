@@ -12,6 +12,7 @@ import { Pokemon } from "../models/pokemon";
 import ComboText from "./comboText";
 import "../style/mainGame.css";
 import Pokedex from "./pokedex/Pokedex";
+//import Incubatori from "./Incubatori";
 
 const regioni = [
   { title: "Kanto", startId: 1, endId: 151 },
@@ -77,18 +78,21 @@ const GameMain: React.FC = () => {
       <div className="leaderboard">
         <p>leaderboard</p>
       </div>
-
+      <ListNextPokemons listPokemons={listaPokemon} />
       <div className="typingboard">
+        <div className="data-container"
+        style={{
+          display:'flex', justifyContent: 'space-around'
+        }}>
         <ComboText />
-        <ListNextPokemons listPokemons={listaPokemon} />
         <Punteggio />
+        </div>
         {listaPokemon.length > 0 && (
           <ProvaTyping pokemon={listaPokemon[indiceCorrente]} />
         )}
       </div>
 
       <div className="collectionboard">
-
         {generazione && (
           <Pokedex
             key={generazione.title}

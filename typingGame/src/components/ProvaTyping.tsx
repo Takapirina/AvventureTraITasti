@@ -7,6 +7,7 @@ import { calcolaPunteggio } from "../utils/calcolaPunteggio";
 
 import Text from "./Text";
 import PokemonImage from "./pokemonImg";
+import FeedbackText from "./FeedbackText";
 
 interface ProvaTypingProps {
   pokemon: Pokemon;
@@ -16,6 +17,7 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
   const [word, setWord] = useState<string>("");
   const [isCromatic, setIsCromatic] = useState<boolean>(false);
   const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [feedbackText, setFeedbackText] = useState<string>("");
 
   // Timer e gestione del punteggio
   const [seconds, setSeconds] = useState<number>(0);
@@ -48,7 +50,7 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
           setIsRunning(false);
           console.log("Secondi impiegati:", seconds);
           
-          calcolaPunteggio(dispatch, pokemon, word, seconds, isCromatic, combo);
+          setFeedbackText(calcolaPunteggio(dispatch, pokemon, word, seconds, isCromatic, combo));
 
           dispatch(avanzaIndice());
           setWord("");
@@ -91,7 +93,7 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
 
   // Logica cromatica per il Pokémon
   useEffect(() => {
-    const random = Math.floor(Math.random() * 4) + 1;
+    const random = Math.floor(Math.random() * 16/*512*/) + 1;
     setIsCromatic(random  <= combo);
   }, [pokemon]);
 
@@ -105,8 +107,10 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
       }}
     >
       <h2>{pokemon.name}</h2>
+      <FeedbackText key={feedbackText} word={feedbackText} />
       <PokemonImage pokemon={pokemon} isCromatico={isCromatic}/>
       <Text nome={word} />
+
       <div style={{ marginTop: "10px", fontSize: "20px" }}>
         ⏱️ Tempo: {seconds.toFixed(1)} secondi
       </div>
