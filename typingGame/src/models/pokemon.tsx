@@ -1,8 +1,10 @@
+export interface PokemonRegistrato {
+    name: string,
+    id: number,
+    isCromatic: boolean
+}
 
-
-export default interface Pokemon {
-    
+export interface Pokemon {
     name: string,
     id: number
-
 }

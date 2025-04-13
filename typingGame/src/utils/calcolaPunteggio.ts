@@ -2,10 +2,11 @@
 import stringSimilarity from 'string-similarity';
 
 import { AppDispatch } from '../store';
-import { aggiornaPunteggio, aggiornaCombo, resetCombo } from "../store/gameSlice";
+import { aggiornaPunteggio, aggiornaCombo, resetCombo, aggiungiPokemonCorretto} from "../store/gameSlice";
+import {Pokemon, PokemonRegistrato} from '../models/pokemon';
 
 const getSimilarity = (finalName : string , inputName : string) : number => {
-    return stringSimilarity.compareTwoStrings(finalName, inputName);
+    return stringSimilarity.compareTwoStrings(finalName, inputName); // ritorna un valore tra 0 - 1
 }
 
 const getTime = (finalName: string, tempo:number) : number => {
@@ -29,26 +30,30 @@ const getTime = (finalName: string, tempo:number) : number => {
 
 export const calcolaPunteggio = (
     dispatch: AppDispatch,
-    finalName : string,
+    pokemon: Pokemon,
     inputName: string,
     time: number,
     isShiny: boolean,
     combo: number
     ) : void => {
 
-    let timeBonus = getTime(finalName, time);
-    let similarityBonus = getSimilarity(finalName, inputName);
+    let timeBonus = getTime(pokemon.name, time);
+    let similarityBonus = getSimilarity(pokemon.name, inputName);
 
     if (timeBonus >= 1.2 && similarityBonus == 1) {
         dispatch(aggiornaCombo())
-        console.log("combo +1 " + combo);
+        let pokemonRegistrato: PokemonRegistrato = {
+            id: pokemon.id,
+            name: pokemon.name,
+            isCromatic: isShiny
+          };
+        similarityBonus == 1 ? dispatch(aggiungiPokemonCorretto(pokemonRegistrato)) : null;
     } else if (timeBonus < 1.2 || similarityBonus != 1){
         dispatch(resetCombo());
-        console.log("combo reset " + combo);
     }
     
 
-    let base = isShiny ? finalName.length * 500 : finalName.length * 100;
+    let base = isShiny ? pokemon.name.length * 500 : pokemon.name.length * 100;
     let punteggio = Math.round(base * similarityBonus * timeBonus * combo);
     dispatch(aggiornaPunteggio(punteggio));
 }

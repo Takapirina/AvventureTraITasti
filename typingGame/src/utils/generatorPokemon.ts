@@ -1,24 +1,24 @@
-import axios from 'axios';
-import Pokemon from '../models/pokemon';
+import Pokemon from "../models/pokemon";
 
 export async function getRandomPokemonList(numPokemon: number = 20): Promise<Pokemon[]> {
-  const pokemonList: Pokemon[] = [];
-  const maxPokemonId = 1026;
+  const res = await fetch("/pokemonList.json");
+  const pokemonListJson: Pokemon[] = await res.json();
 
-  for (let i = 0; i < numPokemon; i++) {
-    const randomId = Math.floor(Math.random() * maxPokemonId);
-    try {
-      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${randomId}/`);
-      const data = response.data;
-      
-      pokemonList.push({
-        id: data.id,
-        name: data.name
-      });
-    } catch (error) {
-      console.error(`Errore nel recuperare i dati per il Pokémon con ID ${randomId}:`, error);
+  const selected: Pokemon[] = [];
+  const usedIds: Set<number> = new Set();
+
+  const maxIndex = pokemonListJson.length;
+
+  while (selected.length < numPokemon) {
+    const randomIndex = Math.floor(Math.random() * maxIndex);
+    const pokemon = pokemonListJson[randomIndex];
+
+    if (!usedIds.has(pokemon.id)) {
+      selected.push(pokemon);
+      usedIds.add(pokemon.id);
     }
   }
 
-  return pokemonList;
+  console.log(selected);
+  return selected;
 }

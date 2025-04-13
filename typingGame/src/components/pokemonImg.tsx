@@ -1,6 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react";
-import Pokemon from "../models/pokemon";
+import {Pokemon}from "../models/pokemon";
 import "../style/mainPokemon.css";
 import "../style/shiny.css";
 
@@ -33,8 +33,8 @@ const PokemonImage : React.FC<pokemonImageProp> = ({pokemon, isCromatico}) => {
                 key={animationKey}
                 className="mainPokemon"
                 style={{
-                height: "200px",
-                width: "200px",
+                height: "250px",
+                width: "250px",
                 backgroundImage: spriteUrl,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
