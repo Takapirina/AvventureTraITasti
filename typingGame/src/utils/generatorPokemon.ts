@@ -1,4 +1,4 @@
-import Pokemon from "../models/pokemon";
+import {Pokemon} from "../models/pokemon";
 
 export async function getRandomPokemonList(numPokemon: number = 20): Promise<Pokemon[]> {
   const res = await fetch("/pokemonList.json");

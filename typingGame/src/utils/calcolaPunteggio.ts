@@ -52,8 +52,8 @@ const getFeedback = (timeBonus: number, similarity: number, combo: number, croma
   
     console.log(`Feedback points: ${points}`);
   
-    if (points >= 10) return pickRandom(feedbackLegendario);
-    if (points >= 8) return pickRandom(feedbackStraordinario);
+    if (points >= 8) return pickRandom(feedbackLegendario);
+    if (points >= 7) return pickRandom(feedbackStraordinario);
     if (points >= 6) return pickRandom(feedbackFantastico);
     if (points >= 5) return pickRandom(feedbackBenFatto);
     if (points >= 4) return pickRandom(feedbackOk);

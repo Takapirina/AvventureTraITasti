@@ -33,7 +33,10 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
         e.key === "Alt" ||
         e.key === "CapsLock" ||
         e.key == "ArrowRight" ||
-        e.key == "ArrowLeft"
+        e.key == "ArrowLeft" ||
+        e.key == "ArrowUp" ||
+        e.key == "ArrowDown" ||
+        e.key == "Enter"
       ) {
         return;
       }
@@ -43,19 +46,6 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
       }
 
       switch (e.key) {
-        case "Enter":
-          console.log("Parola digitata:", word);
-
-          // Ferma il timer e resetta
-          setIsRunning(false);
-          console.log("Secondi impiegati:", seconds);
-          
-          setFeedbackText(calcolaPunteggio(dispatch, pokemon, word, seconds, isCromatic, combo));
-
-          dispatch(avanzaIndice());
-          setWord("");
-          setSeconds(0);
-          break;
 
         case "Backspace":
           setWord((prev) => prev.slice(0, -1));
@@ -71,6 +61,29 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [word, isRunning, pokemon, dispatch, isCromatic, seconds]);
+
+  const handleSubmit = () => {
+    setIsRunning(false);
+    console.log("Parola digitata:", word);
+    console.log("Secondi impiegati:", seconds);
+  
+    setFeedbackText(
+      calcolaPunteggio(dispatch, pokemon, word, seconds, isCromatic, combo)
+    );
+  
+    dispatch(avanzaIndice());
+    setWord("");
+    setSeconds(0);
+  };
+  
+
+  // Quando la parola digitata è corretta, esegui la logica di fine prova
+  useEffect(() => {
+    if (word.toLowerCase() === pokemon.name.toLowerCase()) {
+      handleSubmit();
+    }
+    }, [word, pokemon, dispatch, seconds, isCromatic, combo]);
+
 
   // Gestione del timer
   useEffect(() => {
@@ -93,7 +106,7 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
 
   // Logica cromatica per il Pokémon
   useEffect(() => {
-    const random = Math.floor(Math.random() * 16/*512*/) + 1;
+    const random = Math.floor(Math.random() * 256) + 1;
     setIsCromatic(random  <= combo);
   }, [pokemon]);
 

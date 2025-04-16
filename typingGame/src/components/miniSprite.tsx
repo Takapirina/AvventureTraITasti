@@ -18,7 +18,7 @@ const MiniSprite: React.FC<PokemonRegistratoProps> = ({ pokemon, index }) => {
 
   return (
     <div className="mini-sprite-container">
-      <div className="ball-background" />
+      <div className="ball-background" style={pokemon?.isCromatic ? {  opacity: '1'}:{}}/>
       <div
         className="pokemon-sprite"
         style={{
