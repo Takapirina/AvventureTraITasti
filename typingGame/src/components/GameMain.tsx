@@ -12,6 +12,7 @@ import { Pokemon } from "../models/pokemon";
 import ComboText from "./comboText";
 import "../style/mainGame.css";
 import Pokedex from "./pokedex/Pokedex";
+import Timer from "./Timer";
 //import Incubatori from "./Incubatori";
 
 const regioni = [
@@ -50,6 +51,8 @@ const GameMain: React.FC = () => {
     fetchPokemon();
   }, [dispatch, listaPokemon, indiceCorrente]);
 
+
+
   const handleArrowPress = useCallback((event: KeyboardEvent) => {
     const currentIndex = regioni.findIndex((r) => r.title === generazioneAttiva);
 
@@ -80,6 +83,7 @@ const GameMain: React.FC = () => {
       </div>
       <ListNextPokemons listPokemons={listaPokemon} />
       <div className="typingboard">
+      <Timer/>
         <div className="data-container"
         style={{
           display:'flex', justifyContent: 'space-around'

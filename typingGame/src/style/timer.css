@@ -1,0 +1,13 @@
+.timerContaner{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+.timerLevel{
+    width: 80%;
+    background-color: green;
+    height: 60px;
+}

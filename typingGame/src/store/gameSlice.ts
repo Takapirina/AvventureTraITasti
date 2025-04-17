@@ -9,6 +9,7 @@ interface GameState {
   combo: number;
   listaPokemonCorretti: PokemonRegistrato[];
   listaSpecieCatturate: PokemonRegistrato[];
+  tempoGlobale: number;
 }
 
 const initialState: GameState = {
@@ -17,7 +18,8 @@ const initialState: GameState = {
   punteggio: 0,
   combo: 1,
   listaPokemonCorretti: [],
-  listaSpecieCatturate: []
+  listaSpecieCatturate: [],
+  tempoGlobale: 60000, // si inizia con 2 minuti di tempo?
 };
 
 const gameSlice = createSlice({
@@ -58,10 +60,16 @@ const gameSlice = createSlice({
       } else if (!state.listaSpecieCatturate[index].isCromatic && nuovoPokemon.isCromatic) {
         state.listaSpecieCatturate[index].isCromatic = true;
       }
+    },
+    resetTempo(state){
+      state.tempoGlobale = 120;
+    },
+    UpdateTempoExtra(state, action: PayloadAction<number>){
+      state.tempoGlobale += action.payload;
     }
   },
 });
 
 export const { setListaPokemon, avanzaIndice, aggiornaPunteggio, resetGame, resetCombo, aggiornaCombo,
-               aggiungiPokemonCorretto } = gameSlice.actions;
+               aggiungiPokemonCorretto, UpdateTempoExtra, resetTempo } = gameSlice.actions;
 export default gameSlice.reducer;

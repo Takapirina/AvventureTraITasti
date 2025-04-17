@@ -36,7 +36,8 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
         e.key == "ArrowLeft" ||
         e.key == "ArrowUp" ||
         e.key == "ArrowDown" ||
-        e.key == "Enter"
+        e.key == "PageUp" ||
+        e.key == "PageDown"
       ) {
         return;
       }
@@ -46,7 +47,9 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
       }
 
       switch (e.key) {
-
+        case "Enter":
+          handleSubmit();
+          break;
         case "Backspace":
           setWord((prev) => prev.slice(0, -1));
           break;
@@ -119,7 +122,7 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
         alignItems: "center",
       }}
     >
-      <h2>{pokemon.name}</h2>
+      {pokemon.name}
       <FeedbackText key={feedbackText} word={feedbackText} />
       <PokemonImage pokemon={pokemon} isCromatico={isCromatic}/>
       <Text nome={word} />

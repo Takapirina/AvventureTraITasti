@@ -2,7 +2,7 @@
 import stringSimilarity from 'string-similarity';
 
 import { AppDispatch } from '../store';
-import { aggiornaPunteggio, aggiornaCombo, resetCombo, aggiungiPokemonCorretto} from "../store/gameSlice";
+import { aggiornaPunteggio, aggiornaCombo, resetCombo, aggiungiPokemonCorretto, UpdateTempoExtra} from "../store/gameSlice";
 import {Pokemon, PokemonRegistrato} from '../models/pokemon';
 
 import { feedbackNoob, feedbackOk, feedbackBenFatto, feedbackFantastico, feedbackLegendario, feedbackStraordinario } from '../models/feedbackList';
@@ -86,7 +86,8 @@ export const calcolaPunteggio = (
     }
 
     if (timeBonus >= 1.2 && similarityBonus == 1) {
-        dispatch(aggiornaCombo())
+        timeBonus >= 1.5 ? dispatch(UpdateTempoExtra(pokemon.name.length * 0.2)) : dispatch(UpdateTempoExtra(pokemon.name.length * 0.1));
+        dispatch(aggiornaCombo());
     } else if (timeBonus < 1.2 || similarityBonus != 1){
         dispatch(resetCombo());
     }
