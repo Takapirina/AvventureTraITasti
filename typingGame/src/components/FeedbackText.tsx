@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import '../style/text.css';
 
 interface TextProps {
@@ -6,17 +6,18 @@ interface TextProps {
 }
 
 const FeedbackText: React.FC<TextProps> = ({ word }) => {
+  const [animationKey, setAnimationKey] = useState<number>(0);
+
+  useEffect(() => {
+    setAnimationKey((prevKey) => prevKey + 1);
+  }, [word]);
 
   return (
-    <div className="feedback-container" key={word}>
+    <div className="feedback-container">
       <div className="text-container">
         <div
-          className="textfeedback"
-        >
-          {word.toUpperCase()}
-        </div>
-        <div
-          className="textfeedback2"
+          className={`textCyber feedback ${word.toLowerCase()}`} 
+          key={animationKey}
         >
           {word.toUpperCase()}
         </div>

@@ -1,117 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
-.pokemonName-container{
-    position: relative;
-    display: inline-block;
-    height: 72px;
-}
-
-.text-container {
+.pokemonName-container {
   position: relative;
   display: inline-block;
-  top: 20%;
-  width: 100%;
+  height: 72px;
   display: flex;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 1000;
+  align-items: center;
 }
 
-.text-container {
-  animation: feedback-game 1.2s ease-out forwards;
+.textCyber {
+  font-family: 'Orbitron', sans-serif;
+  transform: skewX(-20deg);
+  font-size: 2rem;
+  color: rgba(var(--main-color-rgb), 1);
+  text-shadow: 0 0 8px rgba(var(--main-color-rgb), 1);
+  white-space: nowrap;
 }
 
-@keyframes feedback-game {
+.feedback{
+  animation: comboEffect 1s ease-out forwards;
+}
+
+
+@keyframes comboEffect {
   0% {
-    transform: scale(0.5) translateY(20px);
+    transform: scale(1);
     opacity: 0;
+    text-shadow: 0 0 5px #fff;
+    translate: 0px 50px;
   }
   30% {
-    transform: scale(1.3) translateY(0px);
+    transform: scale(1.3);
     opacity: 1;
+    text-shadow: 0 0 10px rgb(var(--main-color-rgb), 30), 0 0 20px rgb(var(--main-color-rgb));
   }
   60% {
-    transform: scale(1) translateY(-10px);
+    transform: scale(1.1);
+    text-shadow: 0 0 5px #fff;
   }
   100% {
-    transform: scale(0.9) translateY(-40px);
+    transform: scale(1);
     opacity: 0;
+    text-shadow: none;
   }
 }
-
-.textfeedback{
-  position: absolute;
-
-  font-family: 'Chewy', cursive;
-  font-size: 1.5rem;
-  font-weight: normal;
-  text-align: center;
-  letter-spacing: 2px;
-  color: #f472b6;
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-}
-
-.textfeedback2 {
-  font-family: 'Chewy', cursive;
-  font-size: 1.5rem;
-  font-weight: normal;
-  text-align: center;
-  letter-spacing: 2px;
-
-  text-shadow:
-    0 0 6px #fcd34d,   
-    2px 2px 0 #f472b6,    
-    4px 4px 6px rgba(0, 0, 0, 0.25);
-}
-
-.textGame{
-    position: absolute;
-
-    font-family: 'Chewy', cursive;
-    font-size: 72px;
-    font-weight: normal;
-    text-align: center;
-    letter-spacing: 2px;
-  
-    /* Banda a strisce: rosa, azzurro, giallo */
-    background: repeating-linear-gradient(
-      to bottom,
-      #ff9ee7 0%, 
-      #ff9ee7 25%,       /* rosa caramella */
-      #9eefff 50%,
-      #fff685 75%,
-      #ff9ee7 85%,
-      #ff9ee7 100%
-    );
-    background-size: 100% 200%;
-    animation: shimmer 5s linear infinite;
-  
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  
-    /* Contorno “elettrico” */
-    -webkit-text-stroke: 2px #fef9c3;
-}
-
-.textGame2{
-    font-family: 'Chewy', cursive;
-    font-size: 72px;
-    font-weight: normal;
-    text-align: center;
-    letter-spacing: 2px;
-
-    /* Ombra tipo glow + rilievo */
-    text-shadow:
-      0 0 6px #fcd34d,       /* glow giallo */
-      2px 2px 0 #f472b6,     /* rosa denso */
-      4px 4px 6px rgba(0, 0, 0, 0.25); /* ombra morbida */
-}
-
-@keyframes shimmer {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 150%; }
-  }

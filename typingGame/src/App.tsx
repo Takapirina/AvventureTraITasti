@@ -1,26 +1,23 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './App.css';
-
+import StartGame from './screen/StartGame';
 import GameMain from './components/GameMain';
-import Punteggio from './components/Punteggio';
-
+import GameOver from './screen/GameOver';
 
 function App() {
   const tempoGlobale = useSelector((state: any) => state.game.tempoGlobale);
-  const listaPokemonCorretti = useSelector((state: any) => state.game.listaPokemonCorretti);
+  const isGameStarted = useSelector((state: any) => state.game.isGameStarted);
 
   return (
-    <>
-      {tempoGlobale > 0 ? (
+    <div className="page">
+      {!isGameStarted ? (
+        <StartGame />
+      ) : tempoGlobale > 0 ? (
         <GameMain />
       ) : (
-        <div className="game-over">
-          <div style={{fontSize:'8rem'}}>Tempo scaduto!</div>
-          <div style={{fontSize:'3rem'}}> Pokémon catturati: {listaPokemonCorretti.length}</div>
-          <Punteggio/>
-        </div>
+        <GameOver />
       )}
-    </>
+    </div>
   );
 }
 

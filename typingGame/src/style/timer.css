@@ -1,13 +1,52 @@
-.timerContaner{
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    padding: 10px;
-    border-radius: 10px;
-    box-sizing: border-box;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:ital,wght@0,400;1,600&display=swap');
 
-.timerLevel{
-    width: 80%;
-    background-color: green;
-    height: 60px;
+.timerComponent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.timerText {
+  font-family: 'Orbitron', sans-serif;
+  transform: skewX(-20deg);
+  font-size: 1.3rem;
+  color: rgba(var(--main-color-rgb), 1);
+  text-shadow: 0 0 5px rgba(var(--main-color-rgb), 1);
+  white-space: nowrap;
+  width: 50px;
+}
+
+.barraContainer {
+  flex-grow: 1;
+  display: flex;
+  gap: 2px;
+  height: 20px;
+  padding: 4px;
+  border: 2px solid rgba(var(--main-color-rgb), .6);
+  border-radius: 4px;
+  background-color: #111;
+  overflow: hidden;
+  box-shadow: 0 0 6px #0ff88a;
+  transform: skewX(-20deg);
+}
+
+.taccaUnitaria {
+  flex: 1;
+  box-sizing: border-box;
+  height: 100%;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.taccaOn {
+  background-color: rgba(var(--main-color-rgb), .8);
+  box-shadow: 0 0 5px rgba(var(--main-color-rgb), 1);
+  border: none;
+}
+
+.taccaOff {
+  background-color: rgba(var(--main-color-rgb), .2);
+  border: none;
 }

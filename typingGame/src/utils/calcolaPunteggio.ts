@@ -5,8 +5,6 @@ import { AppDispatch } from '../store';
 import { aggiornaPunteggio, aggiornaCombo, resetCombo, aggiungiPokemonCorretto, UpdateTempoExtra} from "../store/gameSlice";
 import {Pokemon, PokemonRegistrato} from '../models/pokemon';
 
-import { feedbackNoob, feedbackOk, feedbackBenFatto, feedbackFantastico, feedbackLegendario, feedbackStraordinario } from '../models/feedbackList';
-
 const getSimilarity = (finalName : string , inputName : string) : number => {
     return stringSimilarity.compareTwoStrings(finalName, inputName);
 }
@@ -52,17 +50,13 @@ const getFeedback = (timeBonus: number, similarity: number, combo: number, croma
   
     console.log(`Feedback points: ${points}`);
   
-    if (points >= 8) return pickRandom(feedbackLegendario);
-    if (points >= 7) return pickRandom(feedbackStraordinario);
-    if (points >= 6) return pickRandom(feedbackFantastico);
-    if (points >= 5) return pickRandom(feedbackBenFatto);
-    if (points >= 4) return pickRandom(feedbackOk);
-    return pickRandom(feedbackNoob);
+    if (points >= 7) return ("Perfect!");
+    if (points >= 6) return ("Great");
+    if (points >= 5) return ("Good!");
+    if (points >= 4) return ("Ok!");
+    if (points >= 3) return ("Bad!");
+    return ("Miss");
   };
-
-  function pickRandom(arr: string[]): string {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
 
 export const calcolaPunteggio = (
     dispatch: AppDispatch,

@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { setListaPokemon } from "../store/gameSlice";
 
 import ProvaTyping from "./ProvaTyping";
-import ListNextPokemons from "./ListNextPokemons";
 import Punteggio from "./Punteggio";
 
 import { pokemonList } from "../models/listaPokemon";
 import { getRandomPokemonList } from "../utils/generatorPokemon";
 import { Pokemon } from "../models/pokemon";
-import ComboText from "./comboText";
+import ComboText from "./ComboText";
 import "../style/mainGame.css";
 import Pokedex from "./pokedex/Pokedex";
 import Timer from "./Timer";
+import LeaderBoard from "./leaderBoard";
 //import Incubatori from "./Incubatori";
 
 const regioni = [
@@ -78,17 +78,15 @@ const GameMain: React.FC = () => {
 
   return (
     <div className="main-page">
-      <div className="leaderboard">
-        <p>leaderboard</p>
-      </div>
-      <ListNextPokemons listPokemons={listaPokemon} />
+      <LeaderBoard />
+      {/*<ListNextPokemons listPokemons={listaPokemon} />*/}
       <div className="typingboard">
       <Timer/>
         <div className="data-container"
         style={{
           display:'flex', justifyContent: 'space-around'
         }}>
-        <ComboText />
+        <ComboText/>
         <Punteggio />
         </div>
         {listaPokemon.length > 0 && (

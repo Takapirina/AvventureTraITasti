@@ -10,6 +10,7 @@ interface GameState {
   listaPokemonCorretti: PokemonRegistrato[];
   listaSpecieCatturate: PokemonRegistrato[];
   tempoGlobale: number;
+  isGameStarted : boolean;
 }
 
 const initialState: GameState = {
@@ -19,7 +20,8 @@ const initialState: GameState = {
   combo: 1,
   listaPokemonCorretti: [],
   listaSpecieCatturate: [],
-  tempoGlobale: 60000, // si inizia con 2 minuti di tempo?
+  tempoGlobale: 0, // si inizia con 2 minuti di tempo?
+  isGameStarted: false,
 };
 
 const gameSlice = createSlice({
@@ -40,6 +42,10 @@ const gameSlice = createSlice({
       state.indiceCorrente = 0;
       state.punteggio = 0;
       state.combo = 1;
+      state.listaPokemonCorretti = [];
+      state.listaSpecieCatturate = [];
+      state.tempoGlobale = 120;
+      state.isGameStarted = false;
     },
     resetCombo(state) {
       state.combo = 1;
@@ -47,29 +53,42 @@ const gameSlice = createSlice({
     aggiornaCombo(state) {
       state.combo += 1;
     },
-    aggiungiPokemonCorretto(state, action: PayloadAction<PokemonRegistrato>){
+    aggiungiPokemonCorretto(state, action: PayloadAction<PokemonRegistrato>) {
       state.listaPokemonCorretti.push(action.payload);
       const nuovoPokemon = action.payload;
 
       const index = state.listaSpecieCatturate.findIndex(
         (p) => p.name === nuovoPokemon.name
       );
-    
+
       if (index === -1) {
         state.listaSpecieCatturate.push(nuovoPokemon);
       } else if (!state.listaSpecieCatturate[index].isCromatic && nuovoPokemon.isCromatic) {
         state.listaSpecieCatturate[index].isCromatic = true;
       }
     },
-    resetTempo(state){
-      state.tempoGlobale = 120;
-    },
-    UpdateTempoExtra(state, action: PayloadAction<number>){
+    UpdateTempoExtra(state, action: PayloadAction<number>) {
       state.tempoGlobale += action.payload;
+    },
+
+    avviaGioco(state) {
+      state.isGameStarted = true;
+      state.indiceCorrente = 0;
+      state.punteggio = 0;
+      state.combo = 1;
+      state.listaPokemonCorretti = [];
+      state.listaSpecieCatturate = [];
+    },
+
+    terminaGioco(state) {
+      state.isGameStarted = false;
+    },
+    setTempoGlobale(state, action: PayloadAction<number>) {
+      state.tempoGlobale = action.payload;
     }
   },
 });
 
 export const { setListaPokemon, avanzaIndice, aggiornaPunteggio, resetGame, resetCombo, aggiornaCombo,
-               aggiungiPokemonCorretto, UpdateTempoExtra, resetTempo } = gameSlice.actions;
+               aggiungiPokemonCorretto, UpdateTempoExtra, setTempoGlobale, terminaGioco, avviaGioco} = gameSlice.actions;
 export default gameSlice.reducer;

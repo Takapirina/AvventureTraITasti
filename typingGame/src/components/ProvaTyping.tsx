@@ -37,7 +37,8 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
         e.key == "ArrowUp" ||
         e.key == "ArrowDown" ||
         e.key == "PageUp" ||
-        e.key == "PageDown"
+        e.key == "PageDown" ||
+        e.key == "Escape"
       ) {
         return;
       }
@@ -70,9 +71,10 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
     console.log("Parola digitata:", word);
     console.log("Secondi impiegati:", seconds);
   
-    setFeedbackText(
-      calcolaPunteggio(dispatch, pokemon, word, seconds, isCromatic, combo)
-    );
+    const feedback = calcolaPunteggio(dispatch, pokemon, word, seconds, isCromatic, combo);
+  
+    setFeedbackText("");
+    setTimeout(() => setFeedbackText(feedback), 0);
   
     dispatch(avanzaIndice());
     setWord("");
@@ -80,7 +82,6 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
   };
   
 
-  // Quando la parola digitata è corretta, esegui la logica di fine prova
   useEffect(() => {
     if (word.toLowerCase() === pokemon.name.toLowerCase()) {
       handleSubmit();
@@ -88,7 +89,6 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
     }, [word, pokemon, dispatch, seconds, isCromatic, combo]);
 
 
-  // Gestione del timer
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning) {
@@ -107,7 +107,6 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
     };
   }, [isRunning]);
 
-  // Logica cromatica per il Pokémon
   useEffect(() => {
     const random = Math.floor(Math.random() * 256) + 1;
     setIsCromatic(random  <= combo);
@@ -123,13 +122,9 @@ const ProvaTyping: React.FC<ProvaTypingProps> = ({ pokemon }) => {
       }}
     >
       {pokemon.name}
-      <FeedbackText key={feedbackText} word={feedbackText} />
+      <FeedbackText word={feedbackText}/>
       <PokemonImage pokemon={pokemon} isCromatico={isCromatic}/>
       <Text nome={word} />
-
-      <div style={{ marginTop: "10px", fontSize: "20px" }}>
-        ⏱️ Tempo: {seconds.toFixed(1)} secondi
-      </div>
     </div>
   );
 };

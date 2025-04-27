@@ -1,0 +1,165 @@
+[
+    {
+      "nome": "Taka",
+      "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0547/0000/0001/Normal.png",
+      "punteggio": 123456789,
+      "pokemonCatturati": 120
+    },
+    {
+        "nome": "Yanmega",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0469/0000/0001/Normal.png",
+        "punteggio": 609872,
+        "pokemonCatturati": 98
+      },
+      {
+        "nome": "CoolIce",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0378/0001/Normal.png",
+        "punteggio": 748944,
+        "pokemonCatturati": 105
+      },
+      {
+        "nome": "Bulbasaur",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0001/0001/Normal.png",
+        "punteggio": 1000,
+        "pokemonCatturati": 105
+      },
+      {
+        "nome": "char",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0006/0001/Normal.png",
+        "punteggio": 500,
+        "pokemonCatturati": 105
+      },
+      {
+        "nome": "squirtle",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0009/0001/Normal.png",
+        "punteggio": 2500,
+        "pokemonCatturati": 105
+      },
+      {
+        "nome": "Pikachu",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0025/0001/Normal.png",
+        "punteggio": 25000,
+        "pokemonCatturati": 105
+      },
+      {
+        "nome": "Eevee",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0131/0001/Normal.png",
+        "punteggio": 12000,
+        "pokemonCatturati": 150
+      },
+      {
+        "nome": "Snorlax",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0143/0001/Normal.png",
+        "punteggio": 25000,
+        "pokemonCatturati": 100
+      },
+      {
+        "nome": "Machop",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0567/0000/0001/Normal.png",
+        "punteggio": 8000,
+        "pokemonCatturati": 75
+      },
+      {
+        "nome": "Pidgeot",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0177/0000/0001/Normal.png",
+        "punteggio": 15000,
+        "pokemonCatturati": 120
+      },
+      {
+        "nome": "Clefairy",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0350/0001/Normal.png",
+        "punteggio": 5000,
+        "pokemonCatturati": 80
+      },
+      {
+        "nome": "Mankey",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0565/0000/0001/Normal.png",
+        "punteggio": 4000,
+        "pokemonCatturati": 60
+      },
+      {
+        "nome": "Rattata",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0198/0001/Normal.png",
+        "punteggio": 2000,
+        "pokemonCatturati": 50
+      },
+      {
+        "nome": "Poliwag",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0606/0000/0001/Normal.png",
+        "punteggio": 7500,
+        "pokemonCatturati": 90
+      },
+      {
+        "nome": "Arbok",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0241/0000/0001/Normal.png",
+        "punteggio": 22000,
+        "pokemonCatturati": 130
+      },
+      {
+        "nome": "Zubat",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0396/0000/0001/Normal.png",
+        "punteggio": 3500,
+        "pokemonCatturati": 60
+      },
+      {
+        "nome": "Igglybuff",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0176/0001/Normal.png",
+        "punteggio": 1000,
+        "pokemonCatturati": 20
+      },
+      {
+        "nome": "Tyrogue",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0235/0001/Normal.png",
+        "punteggio": 1500,
+        "pokemonCatturati": 25
+      },
+      {
+        "nome": "Smoochum",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0234/0001/Normal.png",
+        "punteggio": 1200,
+        "pokemonCatturati": 15
+      },
+      {
+        "nome": "Elekid",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0236/0001/Normal.png",
+        "punteggio": 1800,
+        "pokemonCatturati": 30
+      },
+      {
+        "nome": "Magby",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0237/0001/Normal.png",
+        "punteggio": 1100,
+        "pokemonCatturati": 18
+      },
+      {
+        "nome": "Pichu",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0173/0001/Normal.png",
+        "punteggio": 2000,
+        "pokemonCatturati": 22
+      },
+      {
+        "nome": "Cleffa",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0175/0001/Normal.png",
+        "punteggio": 1300,
+        "pokemonCatturati": 16
+      },
+      {
+        "nome": "Azurill",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0337/0001/Normal.png",
+        "punteggio": 800,
+        "pokemonCatturati": 12
+      },
+      {
+        "nome": "Budew",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0422/0001/Normal.png",
+        "punteggio": 1600,
+        "pokemonCatturati": 28
+      },
+      {
+        "nome": "Chingling",
+        "urlImg": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0433/0001/Normal.png",
+        "punteggio": 1400,
+        "pokemonCatturati": 24
+      }
+
+  ]

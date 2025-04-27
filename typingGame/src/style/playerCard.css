@@ -1,0 +1,80 @@
+.card-container {
+    border: solid rgb(var(--main-color-rgb)) 1px;
+    border-radius: 10px 0px;
+    margin: 5px;
+  }
+  
+  .player-card {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+  }
+
+.you-card{
+    border: solid rgb(255, 230, 0) 1px;
+    border-radius: 10px 0px;
+    margin: 5px;
+    background-color: rgb(255, 230, 0,0.1);
+  }
+  
+  .name-img-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .img-Player {
+    height: 40px;
+    width: 40px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .player-name {
+    font-size: 1.2rem;
+  }
+  
+  .player-points {
+    font-size: 1rem;
+  }
+  
+  .leaderboard-container {
+    position: relative;
+    height: 100vh;
+  }
+  
+  .leaderboard-scrollable {
+    transition: transform 0.5s ease;
+  }
+  
+  .you-card-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: appearCard 0.5s ease;
+    z-index: 10;
+  }
+  
+  @keyframes appearCard {
+    0% {
+      transform: translate(-50%, -70%);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+  .player-card-wrapper {
+    margin-bottom: 10px;
+  }
+  
+  .you-card-wrapper {
+    pointer-events: none;
+    z-index: 10;
+  }

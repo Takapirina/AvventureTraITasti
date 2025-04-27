@@ -8,3 +8,10 @@ export interface Pokemon {
     name: string,
     id: number
 }
+
+export interface Partita {
+    nome: string;
+    urlImg: string;
+    punteggio: number;
+    pokemonCatturati: number;
+  }
